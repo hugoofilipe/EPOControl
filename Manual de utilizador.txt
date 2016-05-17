@@ -1,0 +1,29 @@
+Hugo Filipe, 2015/2016, UNINOVA
+-----------------------------------------------------------------
+Projeto que íntegra os ficheiros gerados das IOPT-tools e a biblioteca EPOCon-trol.
+-----------------------------------------------------------------
+Como instalar: Por favor extraia "Software.rar" para uma diretoria à escolha.
+Como desinstalar: Por favor apague a pasta “Software”.
+-----------------------------------------------------------------
+Como iniciar o programa:
+1.	Abrir a pasta Software e clicar em DronEpoc.exe
+Ou…
+1. Abrir a pasta Software/bin/cliente_v6/DronEpoc e clicar em DronEpoc.sln  
+2. Carregar em F5 no teclado.  
+-----------------------------------------------------------------
+Antes de criar o projeto: É necessário ter-se instalado o visual studio, DirectX e o windows sdk para poder criar o projeto solução.
+Pode ser necessário ter que se desativar a opção "loader lock exception no visual studio (debug->exception->Managed Debugging assistents -> Disable the "Loader lock" checkbox).
+Por favor atualize o capacete Emotiv EPOC com o ultimo firmware.
+Este software necessita das seguintes bibliotecas:
+EPOControl: edk.dll / edk.h / edk.lib / edk_utils.dll  / edk_utils.lib / edkErrorCode.h  / EmoStateDLL.h / controlador.cpp / controlador.h
+IOPT-Tools: net_dbginfo.cpp / net_exec_step.cpp / net_function.cpp / net_io.cpp / net_main.cpp / net_types.h 
+(Nota: os ficheiros gerados pelas IOPT-Tools com o formato “.c” têm de ser pas-sados para “.cpp”).
+(Atenção: ficheiros “.dll” têm de estar na pasta debug do projeto no momento de correr o projeto.)
+ -----------------------------------------------------------------
+Como criar o projeto:
+1. Abrir o Microsoft visual Studio e entrar em file -> new -> Project escolher visual c++ -> Win32 Console Application.
+2. Carregar em Application type -> Console application and tcheck "empty project".
+3. No projecto fazer ADD -> existing item... e escolher a pasta \Software\bin\cliente_v6\EPOControl e a pasta \Software\bin\cliente_v6\IOPT-DronEpoc_v5 (apagar o ficheiro “dummy_gpio.cpp”).
+4. No projeto fazer propriedades -> c/c++ -> General -> tcheck addictional Include Directories e escolher a pasta \Software\bin\cliente_v6\EPOControl  e \Software\bin\cliente_v6\IOPT-DronEpoc_v5.
+5. No projeto fazer propriedades -> c/c++ -> Preprocessor-> Preprocessor definicion e adicionar “;HTTP_SERVER” - (caso queira-mos tornar possível fazer debugger nas IOPT-Tools
+6. Implementar funções de controlo de entrada e saída no ficheiro “net_io.cpp”.
